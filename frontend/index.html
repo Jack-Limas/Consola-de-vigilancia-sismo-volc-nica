@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consola de Vigilancia Sismo-Volcánica</title>
+  <style>
+    body { background: #111; color: #fff; font-family: monospace; margin: 0; padding: 10px; }
+    canvas { background: #000; border: 1px solid #333; display: block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Observatorio Vulcanológico - Consola en Tiempo Real</h1>
+  <div id="status">Estado: Monitoreando...</div>
+  <canvas id="seismicCanvas" width="1200" height="800"></canvas>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
