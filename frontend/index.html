@@ -1,17 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Consola de Vigilancia Sismo-Volcánica</title>
-  <style>
-    body { background: #111; color: #fff; font-family: monospace; margin: 0; padding: 10px; }
-    canvas { background: #000; border: 1px solid #333; display: block; margin-top: 10px; }
-  </style>
-</head>
-<body>
-  <h1>Observatorio Vulcanológico - Consola en Tiempo Real</h1>
-  <div id="status">Estado: Monitoreando...</div>
-  <canvas id="seismicCanvas" width="1200" height="800"></canvas>
-  <script type="module" src="/src/main.ts"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Consola web de vigilancia sismo-volcanica en tiempo real con Workers, SharedArrayBuffer y STA/LTA."
+    />
+    <title>Consola de vigilancia sismo-volcanica</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <section>
+          <p class="eyebrow">Observatorio volcanologico regional</p>
+          <h1>Consola de vigilancia sismo-volcanica</h1>
+        </section>
+        <section class="status-strip" aria-label="Estado del sistema">
+          <span id="clock">--:--:--</span>
+          <span id="isolation">Verificando aislamiento</span>
+          <span id="workerCount">Workers iniciando</span>
+        </section>
+      </header>
+
+      <main class="console-layout">
+        <section class="monitor-panel">
+          <div class="toolbar">
+            <div>
+              <strong id="status">Monitoreando flujo sintetico</strong>
+              <span id="frameStats">Esperando tramas</span>
+            </div>
+            <div class="actions">
+              <button id="liveBtn" type="button" title="Volver al borde vivo">Live</button>
+              <button id="exportBtn" type="button" title="Exportar ventana de 180 segundos">Exportar CSV</button>
+            </div>
+          </div>
+          <canvas id="seismicCanvas" aria-label="Sismogramas de 27 canales"></canvas>
+        </section>
+
+        <aside class="side-panel" aria-label="Panel de operacion">
+          <section class="control-block">
+            <h2>Ventana</h2>
+            <label>
+              <span>Zoom <output id="zoomValue">60s</output></span>
+              <input id="zoomRange" min="10" max="180" step="10" value="60" type="range" />
+            </label>
+            <label>
+              <span>Historial <output id="offsetValue">vivo</output></span>
+              <input id="offsetRange" min="0" max="540" step="5" value="0" type="range" />
+            </label>
+          </section>
+
+          <section class="control-block">
+            <h2>Rendimiento</h2>
+            <p id="inp">INP esperando interaccion</p>
+            <p id="longTasks">0 tareas largas</p>
+          </section>
+
+          <section class="control-block event-block">
+            <h2>Eventos</h2>
+            <ul id="eventList"></ul>
+          </section>
+        </aside>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

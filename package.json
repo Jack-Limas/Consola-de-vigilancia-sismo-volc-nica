@@ -1,0 +1,12 @@
+{
+  "name": "consola-vigilancia-sismo-volcanica",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "backend:dev": "npm --prefix backend run dev",
+    "backend:build": "npm --prefix backend run build"
+  }
+}
